@@ -1,0 +1,52 @@
+{
+  "name": "fluxo-financas",
+  "version": "1.0.0",
+  "main": "expo-router/entry",
+  "dependencies": {
+    "@react-native-async-storage/async-storage": "^3.1.1",
+    "clsx": "^2.1.1",
+    "date-fns": "^4.4.0",
+    "expo": "~57.0.13",
+    "expo-blur": "^57.0.2",
+    "expo-constants": "^57.0.11",
+    "expo-font": "^57.0.1",
+    "expo-haptics": "^57.0.1",
+    "expo-linear-gradient": "^57.0.1",
+    "expo-linking": "^57.0.6",
+    "expo-notifications": "^57.0.11",
+    "expo-router": "^57.0.13",
+    "expo-splash-screen": "^57.0.6",
+    "expo-status-bar": "~57.0.1",
+    "expo-symbols": "^57.0.2",
+    "lucide-react-native": "^1.31.0",
+    "nativewind": "^4.2.6",
+    "react": "19.2.3",
+    "react-dom": "^19.2.3",
+    "react-native": "0.86.2",
+    "react-native-gesture-handler": "^3.2.1",
+    "react-native-gifted-charts": "^1.4.78",
+    "react-native-reanimated": "^4.5.3",
+    "react-native-safe-area-context": "^5.9.0",
+    "react-native-screens": "^4.27.0",
+    "react-native-svg": "^15.15.5",
+    "react-native-web": "^0.21.2",
+    "react-native-worklets": "^0.11.4",
+    "tailwind-merge": "^3.6.0",
+    "tailwindcss": "^3.4.19",
+    "zustand": "^5.0.15"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.29.7",
+    "@types/react": "~19.2.2",
+    "babel-plugin-module-resolver": "^5.0.3",
+    "babel-preset-expo": "^57.0.7",
+    "typescript": "~6.0.3"
+  },
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web"
+  },
+  "private": true
+}
