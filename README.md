@@ -41,16 +41,61 @@ constants/             # paleta de cores, categorias padrão
 utils/                 # formatação de moeda, datas, ids
 ```
 
-## Rodando o projeto
+## Rodando o projeto (sem pagar nada à Apple)
 
-```bash
-npm install
-npm run start   # abre o Metro; use o app Expo Go ou um simulador iOS
-```
+Você **não precisa** de conta paga de desenvolvedor Apple (US$ 99/ano) nem publicar
+na App Store para usar o app no seu iPhone. O projeto só usa módulos compatíveis
+com o **Expo Go**, então dá para rodar de graça direto no seu aparelho.
+
+### Opção A — tendo um computador (Windows, Mac ou Linux)
+
+1. Instale o app **Expo Go** (grátis) na App Store do seu iPhone.
+2. No computador, dentro da pasta do projeto:
+   ```bash
+   npm install
+   npm run start
+   ```
+3. Aparece um QR code no terminal. Abra a câmera do iPhone (ou o próprio Expo
+   Go) e aponte para ele — o app abre rodando de verdade no seu celular, com
+   atualização automática a cada alteração no código.
+4. Celular e computador precisam estar na mesma rede Wi-Fi. Se não estiverem
+   (ex: rede corporativa que bloqueia), rode `npx expo start --tunnel` em vez
+   de `npm run start` — cria um túnel público, mais lento porém funciona em
+   qualquer rede.
+
+### Opção B — só com o celular, sem computador
+
+Dá para fazer tudo isso pelo navegador do celular usando o **GitHub
+Codespaces** (tem plano gratuito):
+
+1. No site do GitHub (`github.com/viniciusarins-dev/financas-vini`) pelo
+   navegador do celular, abra o repositório.
+2. Toque em **Code → Codespaces → Create codespace on main**. Isso abre um
+   VS Code completo rodando na nuvem, no navegador.
+3. No terminal do Codespace, rode:
+   ```bash
+   npm install
+   npx expo start --tunnel
+   ```
+4. Vai aparecer um QR code e um link. Abra o **Expo Go** no iPhone e escaneie
+   o QR code (ou cole o link `exp://...` na busca do Expo Go).
+5. Pronto — o app carrega no seu iPhone rodando a partir do código na nuvem,
+   sem precisar de computador nem de conta Apple paga.
+
+> Se preferir, também dá para pedir para alguém com computador rodar o passo
+> A e te mandar o link/QR code por mensagem — o Expo Go abre normalmente a
+> partir de um link `exp://` recebido de qualquer forma.
 
 Na primeira execução o app popula o AsyncStorage com dados demonstrativos
 (despesas, entradas, metas e orçamentos) para que todas as telas e gráficos já
 apareçam preenchidos.
+
+### Quando a conta paga da Apple entra em cena
+
+Só é necessária se, no futuro, você quiser: publicar de verdade na App Store,
+distribuir para outras pessoas via TestFlight, ou gerar um build instalado
+permanentemente no iPhone (sem precisar do Expo Go). Para uso pessoal e testes,
+o Expo Go cobre 100% do necessário, de graça.
 
 ## Registro por linguagem natural
 
