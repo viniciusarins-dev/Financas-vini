@@ -3,7 +3,7 @@ import { View, Pressable, Text } from 'react-native';
 import { BlurView } from 'expo-blur';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
-import type { BottomTabBarProps } from 'expo-router/build/react-navigation/bottom-tabs';
+import type { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 import { Home, ArrowLeftRight, PieChart, Target, Bot } from 'lucide-react-native';
 import * as Haptics from 'expo-haptics';
 import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
