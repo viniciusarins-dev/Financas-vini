@@ -1,0 +1,1 @@
+export EXPO_TOKEN=30rup9BFrU-YKOW-5ny_KhttA26CPIQDPBbkX_I9
