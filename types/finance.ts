@@ -72,9 +72,24 @@ export interface CategoryBreakdownItem {
   transactionCount: number;
 }
 
+export interface RecurringRule {
+  id: string;
+  type: TransactionType;
+  amount: number;
+  categoryId: string;
+  description: string;
+  paymentMethod: PaymentMethod | null;
+  dayOfMonth: number;
+  active: boolean;
+  lastGeneratedYearMonth: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
 export interface AppSettings {
   themeMode: 'dark' | 'light' | 'system';
   notificationsEnabled: boolean;
   dailyReminderEnabled: boolean;
   userName: string;
+  appLockEnabled: boolean;
 }

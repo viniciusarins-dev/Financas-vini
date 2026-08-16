@@ -7,6 +7,7 @@ const DEFAULT_SETTINGS: AppSettings = {
   notificationsEnabled: true,
   dailyReminderEnabled: false,
   userName: 'Vinicius',
+  appLockEnabled: false,
 };
 
 interface SettingsState {
@@ -21,8 +22,8 @@ export const useSettingsStore = create<SettingsState>((set, get) => ({
   isLoaded: false,
 
   load: async () => {
-    const settings = await readValue<AppSettings>(STORAGE_KEYS.settings, DEFAULT_SETTINGS);
-    set({ settings, isLoaded: true });
+    const stored = await readValue<Partial<AppSettings>>(STORAGE_KEYS.settings, DEFAULT_SETTINGS);
+    set({ settings: { ...DEFAULT_SETTINGS, ...stored }, isLoaded: true });
   },
 
   update: async (patch) => {

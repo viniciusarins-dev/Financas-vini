@@ -1,8 +1,9 @@
 import React from 'react';
-import { View, Text, Pressable, Switch, ScrollView } from 'react-native';
+import { View, Text, Pressable, Switch, ScrollView, Alert } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { X, Moon, Sun, Smartphone, Bell, Wallet } from 'lucide-react-native';
+import { X, Moon, Sun, Smartphone, Bell, Wallet, ScanFace, Repeat } from 'lucide-react-native';
+import * as LocalAuthentication from 'expo-local-authentication';
 import { GlassCard } from '@/components/GlassCard';
 import { useThemeColors } from '@/hooks/useThemeColors';
 import { useSettingsStore } from '@/store/useSettingsStore';
@@ -43,6 +44,23 @@ export default function SettingsScreen() {
       await cancelDailyReminder();
     }
     await update({ dailyReminderEnabled: value });
+  }
+
+  async function handleToggleAppLock(value: boolean) {
+    if (value) {
+      const hasHardware = await LocalAuthentication.hasHardwareAsync();
+      const isEnrolled = await LocalAuthentication.isEnrolledAsync();
+      if (!hasHardware || !isEnrolled) {
+        Alert.alert(
+          'Face ID não configurado',
+          'Configure o Face ID (ou outro método biométrico) nos Ajustes do iPhone para poder usar o bloqueio do app.',
+        );
+        return;
+      }
+      const result = await LocalAuthentication.authenticateAsync({ promptMessage: 'Confirme para ativar o bloqueio' });
+      if (!result.success) return;
+    }
+    await update({ appLockEnabled: value });
   }
 
   return (
@@ -107,14 +125,35 @@ export default function SettingsScreen() {
           </View>
         </GlassCard>
 
+        <Text style={{ color: colors.faint, fontSize: 12, fontWeight: '700', marginBottom: 10 }}>SEGURANÇA</Text>
+        <GlassCard style={{ marginBottom: 24 }}>
+          <View style={{ flexDirection: 'row', alignItems: 'center', padding: 18, gap: 12 }}>
+            <ScanFace size={18} color={colors.muted} />
+            <View style={{ flex: 1 }}>
+              <Text style={{ color: colors.ink, fontSize: 14.5, fontWeight: '600' }}>Bloquear com Face ID</Text>
+              <Text style={{ color: colors.faint, fontSize: 12, marginTop: 2 }}>
+                Exige autenticação sempre que o app é aberto
+              </Text>
+            </View>
+            <Switch value={settings.appLockEnabled} onValueChange={handleToggleAppLock} trackColor={{ true: colors.accent }} />
+          </View>
+        </GlassCard>
+
         <Text style={{ color: colors.faint, fontSize: 12, fontWeight: '700', marginBottom: 10 }}>FINANÇAS</Text>
         <GlassCard>
           <Pressable
             onPress={() => router.push('/budgets')}
-            style={{ flexDirection: 'row', alignItems: 'center', padding: 16, gap: 12 }}
+            style={{ flexDirection: 'row', alignItems: 'center', padding: 16, gap: 12, borderBottomWidth: 1, borderBottomColor: colors.border }}
           >
             <Wallet size={18} color={colors.muted} />
             <Text style={{ flex: 1, color: colors.ink, fontSize: 14.5, fontWeight: '600' }}>Orçamentos</Text>
+          </Pressable>
+          <Pressable
+            onPress={() => router.push('/recurring')}
+            style={{ flexDirection: 'row', alignItems: 'center', padding: 16, gap: 12 }}
+          >
+            <Repeat size={18} color={colors.muted} />
+            <Text style={{ flex: 1, color: colors.ink, fontSize: 14.5, fontWeight: '600' }}>Transações recorrentes</Text>
           </Pressable>
         </GlassCard>
       </ScrollView>

@@ -6,6 +6,7 @@ export const STORAGE_KEYS = {
   goals: '@fluxo/goals',
   goalContributions: '@fluxo/goal_contributions',
   budgets: '@fluxo/budgets',
+  recurringRules: '@fluxo/recurring_rules',
   settings: '@fluxo/settings',
   seeded: '@fluxo/seeded_v1',
 } as const;
